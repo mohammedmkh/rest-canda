@@ -63,8 +63,9 @@ class UserApiController extends Controller
                 'token' => $token,
             ]);
         }
+            return ResponseHelper::success(['user' => $user , 'token' => $token], 'Login successfully.');
 
-        return response()->json(['message' => 'Unauthorized'], 401);
+       // return response()->json(['message' => 'Unauthorized'], 401);
     }
 
     public function profile(Request $request)
@@ -89,5 +90,8 @@ class UserApiController extends Controller
         } else {
             return ResponseHelper::error('User not found.', 404);
         }
+    }
+    public function test(){
+
     }
 }
