@@ -1,6 +1,4 @@
-<?
-// app/Helpers/ResponseHelper.php
-
+<?php
 namespace App\Helpers;
 
 class ResponseHelper
