@@ -41,9 +41,14 @@ class UserApiController extends Controller
         ]);
 
         $user->roles()->sync([3]);
-        return ResponseHelper::success($user, 'User registered successfully.');
-    }
 
+        // send SMSProvider()
+        return ResponseHelper::success($user, 'User registered successfully.');
+
+
+        //
+    }
+    
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
