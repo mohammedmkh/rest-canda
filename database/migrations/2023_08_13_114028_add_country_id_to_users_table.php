@@ -12,9 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            
-            $table->unsignedBigInteger('country_id')->after('email');
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete;
+            $table->integer('country_id')->unsigned()->default(1);
+
+            $table->foreign('country_id')->references('id')->on('countries');
+            /* $table->unsignedBigInteger('country_id')->after('email')->nullable();
+            $table->foreign('country_id')->references('id')->on('countries')->cascadeOnDelete(); */
+            /* $table->unsignedBigInteger('country_id')->after('email')->default(1);
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete; */
 
         });
     }
@@ -25,7 +29,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+
         });
     }
 };
