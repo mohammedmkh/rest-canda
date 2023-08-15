@@ -37,6 +37,7 @@ class User extends Authenticatable
         'email',
         'country_id',
         'city_id',
+        'mobile',
         'email_verified_at',
         'password',
         'remember_token',

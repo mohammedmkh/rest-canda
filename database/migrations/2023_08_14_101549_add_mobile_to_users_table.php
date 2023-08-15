@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('country_id')->after('email')->default(1);
-            $table->foreign('country_id')->references('id')->on('country')->onDelete('cascade');
+            $table->BigInteger('mobile')->after('email');
         });
     }
 
@@ -23,7 +22,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+             $table->dropColumn('mobile');
+
         });
     }
 };
