@@ -1,12 +1,16 @@
 <?php
 
+use App\Http\Controllers\Api\V1\CountryCityApiController;
+
 
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1'], function () {
     // Product
     Route::post('login', 'UserApiController@login')->name('login');
     Route::post('register', 'UserApiController@register')->name('register');
-
+    Route::post('verify', 'UserApiController@verify')->name('Verify');
+    Route::get('cities/{country}','CountryCityApiController@ShowCity')->name('cities');
+    Route::get('Countries','CountryCityApiController@ShowCountry')->name('Countries');
     Route::get('resturants', 'UserApiController@resturants')->name('resturants');
 });
 

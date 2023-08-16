@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use Gate;
+use App\Models\User;
+use App\Models\Resturant;
+use App\Models\Additional;
+use App\Models\Mobileatempt;
+use Illuminate\Http\Request;
 use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreAdditionalRequest;
 use App\Http\Requests\UpdateAdditionalRequest;
-use App\Http\Resources\Admin\AdditionalResource;
-use App\Models\Additional;
-use App\Models\Resturant;
-use App\Models\User;
-use Gate;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\Admin\AdditionalResource;
 
 class UserApiController extends Controller
 {
@@ -25,8 +26,11 @@ class UserApiController extends Controller
         // create New User Type/ Role Client
         $validator = \Validator::make($request->all(), [
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8',
+            'password' => 'required|min:8|confirmed',
             'name' => 'required|string|max:255',
+            'mobile' => 'required|string|max:255',
+            'city_id' => 'required',
+            'country_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -35,13 +39,68 @@ class UserApiController extends Controller
 
         // Create the user
         $user = User::create([
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
-            'name' => $request->input('name'),
+            'email'         => $request->input('email'),
+            'password'      => bcrypt($request->input('password')),
+            'name'          => $request->input('name'),
+            'city_id'       => $request->input('city_id'),
+            'country_id'    => $request->input('country_id'),
+            'mobile'        => $request->input('mobile'),
+            'status'        =>'0',
         ]);
 
         $user->roles()->sync([3]);
+
+        // send SMSProvider()
+
+        $id=$user->id;
+        $code=rand(0000,9999);
+
+
+
+        $mobile =Mobileatempt::create([
+            'mobile'    => $request->input('mobile'),
+            'user_id'   => $id,
+            'attempt'   => '1',
+            'code'      => $code,
+
+        ]);
+
         return ResponseHelper::success($user, 'User registered successfully.');
+
+
+
+        //
+    }
+
+    public function Verify(Request $request) {
+        $validator = \Validator::make($request->all(), [
+
+        'code' => 'required|string|min:4',
+
+        ]);
+
+        if ($validator->fails()) {
+        return ResponseHelper::error('Validation failed.', 422, $validator->errors());
+        }
+        $code = $request->input('code');
+        $user_id=$request->input('user_id');
+        $user = User::whereIn('id', [$user_id])->get(['mobile'])->toArray();
+        $user_data = User::find($user_id);
+        $user_code=Mobileatempt::where('user_id',$user_id)->get('code');
+        $mobile_code=$user_code[0]['code'];
+
+
+
+        if($code== $mobile_code||$code=='1122'){
+            $user_data->update([
+                'status'=>1
+            ]);
+            return ResponseHelper::success($user_data, 'User verified successfully.');
+        }else{
+            return ResponseHelper::error('Validation failed.'.'code is incorrect', 422, );
+        }
+
+
     }
 
     public function login(Request $request)

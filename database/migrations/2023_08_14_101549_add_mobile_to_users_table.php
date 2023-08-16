@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cities', function (Blueprint $table) {
-
-            $table->id();
-            $table->String('name');
-            $table->unsignedBigInteger('country_id');
-            $table->foreign('country_id')->references('id')->on('country')->onDelete;
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->BigInteger('mobile')->after('email');
         });
     }
 
@@ -26,6 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cities');
+        Schema::table('users', function (Blueprint $table) {
+             $table->dropColumn('mobile');
+
+        });
     }
 };
