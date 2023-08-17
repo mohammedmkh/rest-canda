@@ -2,19 +2,59 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use Gate;
+use App\Models\Product;
+use Illuminate\Http\Request;
+use App\Helpers\ResponseHelper;
+use App\Models\ProductCategory;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\Admin\ProductResource;
-use App\Models\Product;
-use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Controllers\Traits\MediaUploadingTrait;
 
 class ProductApiController extends Controller
 {
     use MediaUploadingTrait;
+
+
+//showing the product by resturant
+   public function getProductsByResturant($resturant) {
+
+        $products = Product::where('resturant_id',$resturant)->get();
+        /* m */
+        if ($products) {
+        // dd($resturants->toArray());
+        return ResponseHelper::success(['products' => $products], 'products retrieved successfully.', 200,);
+        } else {
+        return ResponseHelper::error('products not found.', 404);
+        }
+    }
+
+    //showing product by category
+    function getProductsByCategory($category_id) {
+        $category=ProductCategory::find($category_id);
+        $products=$category->product;
+
+        if ($products) {
+        // dd($resturants->toArray());
+            return ResponseHelper::success(['products' => $products], 'products retrieved successfully.', 200,);
+        } else {
+            return ResponseHelper::error('products not found.', 404);
+        }
+
+    }
+
+   public function productshow($id) {
+        $products = Product::find($id);
+        if ($products) {
+            return ResponseHelper::success(['products' => $products], 'products retrieved successfully.', 200);
+        } else {
+            return ResponseHelper::error('products not found.', 404);
+        }
+    }
+
 
     public function index()
     {

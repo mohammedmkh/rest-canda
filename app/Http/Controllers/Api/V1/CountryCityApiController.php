@@ -18,7 +18,7 @@ class CountryCityApiController extends Controller
         /* $cities = City::paginate(1); */
         if ($cities) {
         // dd($resturants->toArray());
-        return ResponseHelper::success($cities->items(), 'Restaurants retrieved successfully.', 200, $cities);
+        return ResponseHelper::success($cities->items(), 'Cities retrieved successfully.', 200, $cities);
         } else {
         return ResponseHelper::error('Cities not found.', 404);
         }
@@ -29,9 +29,9 @@ class CountryCityApiController extends Controller
         $country = Country::paginate(1);
         if ($country) {
         // dd($resturants->toArray());
-        return ResponseHelper::success($country->items(), 'Restaurants retrieved successfully.', 200, $country);
+        return ResponseHelper::success($country->items(), 'Countries retrieved successfully.', 200, $country);
         } else {
-        return ResponseHelper::error('User not found.', 404);
+        return ResponseHelper::error('Countries not found.', 404);
         }
     }
 }

@@ -2,19 +2,29 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use Gate;
+use App\Models\Resturant;
+use Illuminate\Http\Request;
+use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\StoreResturantRequest;
 use App\Http\Requests\UpdateResturantRequest;
-use App\Http\Resources\Admin\ResturantResource;
-use App\Models\Resturant;
-use Gate;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\Admin\ResturantResource;
+use App\Http\Controllers\Traits\MediaUploadingTrait;
 
 class ResturantsApiController extends Controller
 {
     use MediaUploadingTrait;
+
+    function resturantsshow($id) {
+        $resturant = Resturant::find($id);
+        if ($resturant) {
+            return ResponseHelper::success(['resturants' => $resturant], 'resturants retrieved successfully.', 200);
+        } else {
+            return ResponseHelper::error('resturants not found.', 404);
+        }
+    }
 
     public function index()
     {
@@ -36,12 +46,12 @@ class ResturantsApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(Resturant $resturant)
+    /* public function show(Resturant $resturant)
     {
         abort_if(Gate::denies('resturant_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new ResturantResource($resturant);
-    }
+    } */
 
     public function update(UpdateResturantRequest $request, Resturant $resturant)
     {
