@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::create('cities', function (Blueprint $table) {
 
-            $table->BigInteger('city_id')->after('country_id');
-
+            $table->id();
+            $table->String('name');
+            $table->unsignedBigInteger('country_id');
+            $table->foreign('country_id')->references('id')->on('country')->onDelete;
+            $table->timestamps();
         });
     }
 
@@ -23,9 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-             $table->dropColumn('city_id');
-
-        });
+        Schema::dropIfExists('cities');
     }
 };

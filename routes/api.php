@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\V1\ProductApiController;
+
 use App\Http\Controllers\Api\V1\CountryCityApiController;
 
 
@@ -12,6 +14,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1'], functi
     Route::get('cities/{country}','CountryCityApiController@ShowCity')->name('cities');
     Route::get('Countries','CountryCityApiController@ShowCountry')->name('Countries');
     Route::get('resturants', 'UserApiController@resturants')->name('resturants');
+    Route::post('password/email', 'ForgotPasswordApiController@forgot');
+    Route::post('password/reset', 'ForgotPasswordApiController@reset');
 });
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1', 'middleware' => ['auth:sanctum']], function () {
@@ -19,24 +23,28 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1', 'middle
 
     Route::get('profile',  'UserApiController@profile')->name('profile');
     Route::post('products/media', 'ProductApiController@storeMedia')->name('products.storeMedia');
-    Route::apiResource('products', 'ProductApiController');
+   // Route::apiResource('products', 'ProductApiController');
 
+     Route::get('showproductsbyresturant/{resturant}','ProductApiController@getProductsByResturant');
+     Route::get('`showproductsbycategory`/{category_id}','ProductApiController@getProductsByCategory');
+     Route::get('product/{id}', 'ProductApiController@productshow');
+     Route::get('resturant/{id}', 'ResturantsApiController@resturantsshow');
     // Resturants
     //  Route::post('resturants/media', 'ResturantsApiController@storeMedia')->name('resturants.storeMedia');
     // Route::apiResource('resturants', 'ResturantsApiController');
 
     // Additionals
-    Route::apiResource('additionals', 'AdditionalsApiController');
+   // Route::apiResource('additionals', 'AdditionalsApiController');
 
     // Favorite
-    Route::apiResource('favorites', 'FavoriteApiController');
+  //  Route::apiResource('favorites', 'FavoriteApiController');
 
     // Notification
-    Route::apiResource('notifications', 'NotificationApiController');
+  //  Route::apiResource('notifications', 'NotificationApiController');
 
     // Orders
-    Route::apiResource('orders', 'OrdersApiController');
+   // Route::apiResource('orders', 'OrdersApiController');
 
     // Addresses
-    Route::apiResource('addresses', 'AddressesApiController');
+    //Route::apiResource('addresses', 'AddressesApiController');
 });

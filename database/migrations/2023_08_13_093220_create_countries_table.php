@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::create('country', function (Blueprint $table) {
 
-            $table->BigInteger('city_id')->after('country_id');
-
+            $table->bigIncrements('id');
+            $table->String('name');
+            $table->timestamps();
         });
     }
 
@@ -23,9 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-             $table->dropColumn('city_id');
-
-        });
+        Schema::dropIfExists('countries');
     }
 };
