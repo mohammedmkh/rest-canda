@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\CountryController;
+
 Route::redirect('/', '/login');
 Route::get('/home', function () {
     if (session('status')) {
@@ -30,6 +32,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('product-categories/media', 'ProductCategoryController@storeMedia')->name('product-categories.storeMedia');
     Route::post('product-categories/ckmedia', 'ProductCategoryController@storeCKEditorImages')->name('product-categories.storeCKEditorImages');
     Route::resource('product-categories', 'ProductCategoryController');
+
+    //country&city
+    Route::resource('country', CountryController::class);
+    Route::delete('country/destroy',[CountryController::class,'massDestroy'])->name('admin.country.massDestroy');
 
     // Product Tag
     Route::delete('product-tags/destroy', 'ProductTagController@massDestroy')->name('product-tags.massDestroy');
