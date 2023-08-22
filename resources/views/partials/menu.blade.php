@@ -134,29 +134,30 @@
                         </ul>
                     </li>
                 @endcan
-                @can('country&city')
+                @can('product_management_access')
                     <li
                         class="nav-item has-treeview {{ request()->is('admin/product-categories*') ? 'menu-open' : '' }} {{ request()->is('admin/product-tags*') ? 'menu-open' : '' }} {{ request()->is('admin/products*') ? 'menu-open' : '' }} {{ request()->is('admin/additionals*') ? 'menu-open' : '' }}">
                         <a class="nav-link nav-dropdown-toggle {{ request()->is('admin/product-categories*') ? 'active' : '' }} {{ request()->is('admin/product-tags*') ? 'active' : '' }} {{ request()->is('admin/products*') ? 'active' : '' }} {{ request()->is('admin/additionals*') ? 'active' : '' }}"
                             href="#">
-                            <i class="fa-fw nav-icon fas fa-shopping-cart">
+                            <i class="fas fa-globe"></i>
 
-                            </i>
+
                             <p>
-                                {{ trans('cruds.productManagement.title') }}
+                                {{ trans('cruds.country&city.title') }}
                                 <i class="right fa fa-fw fa-angle-left nav-icon"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             @can('product_category_access')
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.product-categories.index') }}"
-                                        class="nav-link {{ request()->is('admin/product-categories') || request()->is('admin/product-categories/*') ? 'active' : '' }}">
-                                        <i class="fa-fw nav-icon fas fa-folder">
+                                    <a href="{{ route('admin.country.index') }}"
+                                        class="nav-link {{ request()->is('admin/country') || request()->is('admin/country/*') ? 'active' : '' }}">
 
-                                        </i>
+                                        <i class="fas fa-globe-asia"></i>
+
+                                        
                                         <p>
-                                            {{ trans('cruds.productCategory.title') }}
+                                            {{ trans('cruds.country.title') }}
                                         </p>
                                     </a>
                                 </li>
@@ -164,26 +165,11 @@
 
                             @can('product_access')
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.products.index') }}"
-                                        class="nav-link {{ request()->is('admin/products') || request()->is('admin/products/*') ? 'active' : '' }}">
-                                        <i class="fa-fw nav-icon fas fa-shopping-cart">
-
-                                        </i>
+                                    <a href="{{ route('admin.city.index') }}"
+                                        class="nav-link {{ request()->is('admin/city') || request()->is('admin/city/*') ? 'active' : '' }}">
+                                        <i class="fas fa-city"></i>
                                         <p>
-                                            {{ trans('cruds.product.title') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('additional_access')
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.additionals.index') }}"
-                                        class="nav-link {{ request()->is('admin/additionals') || request()->is('admin/additionals/*') ? 'active' : '' }}">
-                                        <i class="fa-fw nav-icon fas fa-calendar-plus">
-
-                                        </i>
-                                        <p>
-                                            {{ trans('cruds.additional.title') }}
+                                            {{ trans('cruds.city.title') }}
                                         </p>
                                     </a>
                                 </li>

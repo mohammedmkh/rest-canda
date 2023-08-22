@@ -6,7 +6,7 @@ use Gate;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCityRequest;
+use App\Http\Requests\StoreCountryRequest;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\MassDestroyCountryRequest;
 
@@ -41,7 +41,7 @@ class CountryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCityRequest $request)
+    public function store(StoreCountryRequest $request)
     {
         $country = Country::create($request->all());
         return redirect()->route('admin.country.index');

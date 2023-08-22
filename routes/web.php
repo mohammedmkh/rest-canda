@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
 
 Route::redirect('/', '/login');
@@ -35,7 +36,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     //country&city
     Route::resource('country', CountryController::class);
-    Route::delete('country/destroy',[CountryController::class,'massDestroy'])->name('admin.country.massDestroy');
+    Route::resource('city'   , CityController::class);
+    Route::delete('country/destroy',[CountryController::class,'massDestroy'])->name('country.massDestroy');
+    Route::delete('city/destroy',[CountryController::class,'massDestroy'])->name('city.massDestroy');
 
     // Product Tag
     Route::delete('product-tags/destroy', 'ProductTagController@massDestroy')->name('product-tags.massDestroy');

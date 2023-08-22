@@ -59,7 +59,6 @@
                                 @can('product_category_show')
                                     <a class="btn btn-xs btn-primary" href="{{ route('admin.country.show', $country->id) }}">
                                         {{ trans('global.view') }}
-                                    </a>
                                 @endcan
 
                                 @can('product_category_edit')
@@ -93,7 +92,7 @@
 @parent
 <script>
     $(function () {
-  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
+    let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
             @can('product_delete')
                 let deleteButtonTrans = '{{ trans('global.datatables.delete') }}';
                 let deleteButton = {

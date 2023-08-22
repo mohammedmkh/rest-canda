@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Country;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class City extends Model
 {
@@ -15,4 +16,8 @@ class City extends Model
     'updated_at',
     'deleted_at',
     ];
+
+    function country() {
+        return $this->belongsTo(Country::class);
+    }
 }

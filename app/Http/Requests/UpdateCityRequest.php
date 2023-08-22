@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCityRequest extends FormRequest
+class UpdateCityRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,18 +17,19 @@ class StoreCityRequest extends FormRequest
 
     public function rules(){
 
-        return [
-            'name' => [
-                'string',
-            '   required',
-            ],
+    return [
+        'name' =>
+        [
+            'string',
+            'required',
+        ],
 
-            
 
-            'country_id' =>
-            [
-                'required',
-            ],
-        ];
+
+        'country_id' =>
+        [
+            'required',
+        ],
+    ];
     }
 }
