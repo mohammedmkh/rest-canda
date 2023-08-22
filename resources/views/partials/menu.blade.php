@@ -134,28 +134,28 @@
                         </ul>
                     </li>
                 @endcan
-                @can('product_management_access')
+                @can('countries&cities_access')
                     <li
-                        class="nav-item has-treeview {{ request()->is('admin/product-categories*') ? 'menu-open' : '' }} {{ request()->is('admin/product-tags*') ? 'menu-open' : '' }} {{ request()->is('admin/products*') ? 'menu-open' : '' }} {{ request()->is('admin/additionals*') ? 'menu-open' : '' }}">
-                        <a class="nav-link nav-dropdown-toggle {{ request()->is('admin/product-categories*') ? 'active' : '' }} {{ request()->is('admin/product-tags*') ? 'active' : '' }} {{ request()->is('admin/products*') ? 'active' : '' }} {{ request()->is('admin/additionals*') ? 'active' : '' }}"
+                        class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/city*') ? 'menu-open' : '' }} ">
+                        <a class="nav-link nav-dropdown-toggle {{ request()->is('admin/country*') ? 'active' : '' }} {{ request()->is('admin/city*') ? 'active' : '' }}"
                             href="#">
                             <i class="fas fa-globe"></i>
 
 
                             <p>
-                                {{ trans('cruds.country&city.title') }}
+                                {{ trans('cruds.Country&CityManagement.title') }}
                                 <i class="right fa fa-fw fa-angle-left nav-icon"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            @can('product_category_access')
+                            @can('country_access')
                                 <li class="nav-item">
                                     <a href="{{ route('admin.country.index') }}"
                                         class="nav-link {{ request()->is('admin/country') || request()->is('admin/country/*') ? 'active' : '' }}">
 
                                         <i class="fas fa-globe-asia"></i>
 
-                                        
+
                                         <p>
                                             {{ trans('cruds.country.title') }}
                                         </p>
@@ -163,7 +163,7 @@
                                 </li>
                             @endcan
 
-                            @can('product_access')
+                            @can('city_access')
                                 <li class="nav-item">
                                     <a href="{{ route('admin.city.index') }}"
                                         class="nav-link {{ request()->is('admin/city') || request()->is('admin/city/*') ? 'active' : '' }}">

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class MassDestroyCountryRequest extends FormRequest
 {
@@ -20,7 +21,7 @@ class MassDestroyCountryRequest extends FormRequest
     public function rules()
     {
         return [
-            'ids' => 'required|array',
+            'ids'   => 'required|array',
             'ids.*' => 'exists:countries,id',
         ];
     }

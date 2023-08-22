@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    @can('product_category_create')
+    @can('city_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
                 <a class="btn btn-success" href="{{ route('admin.city.create') }}">
@@ -53,19 +53,19 @@
                                 </td>
 
                                 <td>
-                                    @can('product_category_show')
+                                    @can('city_show')
                                         <a class="btn btn-xs btn-primary" href="{{ route('admin.city.show', $city->id) }}">
                                             {{ trans('global.view') }}
                                         </a>
                                     @endcan
 
-                                    @can('product_category_edit')
+                                    @can('city_edit')
                                         <a class="btn btn-xs btn-info" href="{{ route('admin.city.edit', $city->id) }}">
                                             {{ trans('global.edit') }}
                                         </a>
                                     @endcan
 
-                                    @can('product_category_delete')
+                                    @can('city_delete')
                                         <form action="{{ route('admin.city.destroy', $city->id) }}" method="POST"
                                             onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
                                             style="display: inline-block;">

@@ -42,6 +42,7 @@ class StoreProductRequest extends FormRequest
             'additionals' => [
                 'array',
             ],
+            
         ];
     }
 }

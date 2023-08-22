@@ -69,6 +69,31 @@ return [
         'title'          => 'Product Management',
         'title_singular' => 'Product Management',
     ],
+    'Country&CityManagement' => [
+        'title'             => 'Country&CityManage',
+        'title_singular'    => 'Country&CityManagement',
+    ],
+    'country' => [
+        'title'             => 'Country',
+        'title_singular'    => 'Country',
+        'fields'            =>[
+            
+            'id'        => 'ID',
+            'id_helper' => ' ',
+            'name'      => 'country name',
+        ],
+
+    ],
+    'city' => [
+        'title'             => 'City',
+        'title_singular'    => 'City',
+        'fields' => [
+        'id' => 'ID',
+        'id_helper' => ' ',
+        'name' => 'city name',
+
+        ],
+    ],
     'productCategory' => [
         'title'          => 'Categories',
         'title_singular' => 'Category',
