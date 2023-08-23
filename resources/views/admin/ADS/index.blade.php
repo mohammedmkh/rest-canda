@@ -3,15 +3,15 @@
     @can('city_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.city.create') }}">
-                    {{ trans('global.add') }} {{ trans('cruds.city.title_singular') }}
+                <a class="btn btn-success" href="{{ route('admin.ads.create') }}">
+                    {{ trans('global.add') }} {{ trans('cruds.ads.title_singular') }}
                 </a>
             </div>
         </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.city.title_singular') }} {{ trans('global.list') }}
+            {{ trans('cruds.ads.title_singular') }} {{ trans('global.list') }}
         </div>
 
         <div class="card-body">
@@ -23,50 +23,56 @@
 
                             </th>
                             <th>
-                                {{ trans('cruds.city.fields.id') }}
+                                {{ trans('cruds.ads.fields.id') }}
                             </th>
                             <th>
-                                {{ trans('cruds.city.fields.name') }}
+                                {{ trans('cruds.ads.fields.title') }}
                             </th>
                             <th>
-                                {{ trans('cruds.country.fields.name') }}
+                                {{ trans('cruds.ads.fields.url') }}
                             </th>
                             <th>
-                                &nbsp;
+                                {{ trans('cruds.ads.fields.type') }}
+                            </th>
+                            <th>
+                                {{ trans('global.action') }}
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($city as $key => $city)
-                            <tr data-entry-id="{{ $city->id }}">
+                        @foreach ($ads as $key => $ads)
+                            <tr data-entry-id="{{ $ads->id }}">
                                 <td>
 
                                 </td>
                                 <td>
-                                    {{ $city->id ?? '' }}
+                                    {{ $ads->id ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $city->name ?? '' }}
+                                    {{ $ads->title ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $city->country->name ?? '' }}
+                                    {{ $ads->url ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $ads->type ?? '' }}
                                 </td>
 
                                 <td>
-                                    @can('city_show')
-                                        <a class="btn btn-xs btn-primary" href="{{ route('admin.city.show', $city->id) }}">
+                                    {{-- @can('ads_show')
+                                        <a class="btn btn-xs btn-primary" href="{{ route('admin.city.show', $ads->id) }}">
                                             {{ trans('global.view') }}
                                         </a>
-                                    @endcan
+                                    @endcan --}}
 
-                                    @can('city_edit')
-                                        <a class="btn btn-xs btn-info" href="{{ route('admin.city.edit', $city->id) }}">
+                                    @can('ADS_edit')
+                                        <a class="btn btn-xs btn-info" href="{{ route('admin.ads.edit', $ads->id) }}">
                                             {{ trans('global.edit') }}
                                         </a>
                                     @endcan
 
-                                    @can('city_delete')
-                                        <form action="{{ route('admin.city.destroy', $city->id) }}" method="POST"
+                                    @can('ADS_delete')
+                                        <form action="{{ route('admin.ads.destroy', $ads->id) }}" method="POST"
                                             onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
                                             style="display: inline-block;">
                                             <input type="hidden" name="_method" value="DELETE">
@@ -91,11 +97,11 @@
     <script>
         $(function() {
             let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-            @can('city_delete')
+            @can('ADS_delete')
                 let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
                 let deleteButton = {
                     text: deleteButtonTrans,
-                    url: "{{ route('admin.city.massDestroy') }}",
+                    url: "#",
                     className: 'btn-danger',
                     action: function(e, dt, node, config) {
                         var ids = $.map(dt.rows({

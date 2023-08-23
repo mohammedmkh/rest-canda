@@ -31,7 +31,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        abort_if(Gate::denies('product_category_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('city_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $country=Country::orderby('id','asc')->get();
 
         return view('admin.city.create',compact('country'));
@@ -59,7 +59,7 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        abort_if(Gate::denies('product_category_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('city_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $country=Country::orderby('id','asc')->get();
 
         return view('admin.city.edit', [
@@ -82,7 +82,7 @@ class CityController extends Controller
      */
     public function destroy(City $city)
     {
-         abort_if(Gate::denies('product_category_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+         abort_if(Gate::denies('city_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
          $city->delete();
 

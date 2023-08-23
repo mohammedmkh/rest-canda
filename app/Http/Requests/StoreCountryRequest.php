@@ -12,7 +12,7 @@ class StoreCountryRequest extends FormRequest
      */
      public function authorize()
      {
-        return Gate::allows('product_category_create');
+        return Gate::allows('city_create');
      }
 
      public function rules(){

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    @can('product_category_create')
+    @can('country_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
                 <a class="btn btn-success" href="{{ route('admin.country.create') }}">

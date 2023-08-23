@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\ADSController;
 
 Route::redirect('/', '/login');
 Route::get('/home', function () {
@@ -95,6 +96,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Faqs
     Route::delete('faqs/destroy', 'FaqsController@massDestroy')->name('faqs.massDestroy');
     Route::resource('faqs', 'FaqsController');
+    Route::resource('ads', ADSController::class);
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password

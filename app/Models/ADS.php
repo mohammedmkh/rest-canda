@@ -10,7 +10,7 @@ class ADS extends Model
     use HasFactory;
 
     protected $fillable = [
-    'titles',
+    'title',
     'url',
     'type',
     ];

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\V1\HomePageController;
 use App\Http\Controllers\Api\V1\ProductApiController;
-
 use App\Http\Controllers\Api\V1\CountryCityApiController;
+use App\Http\Controllers\api\V1\ForgotPasswordApiController;
+
 
 
 
@@ -21,6 +23,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1'], functi
      Route::get('`showproductsbycategory`/{category_id}','ProductApiController@getProductsByCategory');
      Route::get('product/{id}', 'ProductApiController@productshow');
      Route::get('getproductbybestseller','ProductApiController@getproductbybestseller');
+     Route::get('homebage','HomePageController@index')->name('homebage');
+
 });
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1', 'middleware' => ['auth:sanctum']], function () {

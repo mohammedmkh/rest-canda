@@ -11,7 +11,7 @@ class UpdateCountryRequest extends FormRequest
      */
     public function authorize()
     {
-        return Gate::allows('product_category_edit');
+        return Gate::allows('country_edit');
     }
 
     public function rules()

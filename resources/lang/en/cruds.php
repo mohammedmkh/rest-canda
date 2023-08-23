@@ -69,6 +69,10 @@ return [
         'title'          => 'Product Management',
         'title_singular' => 'Product Management',
     ],
+    'ADSManagement' => [
+        'title'          => 'ADS Management',
+        'title_singular' => 'ADS Management',
+    ],
     'Country&CityManagement' => [
         'title'             => 'Country&CityManage',
         'title_singular'    => 'Country&CityManagement',
@@ -77,10 +81,23 @@ return [
         'title'             => 'Country',
         'title_singular'    => 'Country',
         'fields'            =>[
-            
+
             'id'        => 'ID',
             'id_helper' => ' ',
             'name'      => 'country name',
+        ],
+
+    ],
+    'ads' => [
+        'title'             => 'ADS',
+        'title_singular'    => 'ADS',
+        'fields'            =>[
+
+            'id'        => 'ID',
+            'title' => 'ADS',
+            'id_helper' => ' ',
+            'url'      => 'URL',
+            'type'      => 'type',
         ],
 
     ],

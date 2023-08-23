@@ -7,6 +7,7 @@ use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCountryRequest;
+use App\Http\Requests\UpdateCountryRequest;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\MassDestroyCountryRequest;
 
@@ -33,7 +34,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        abort_if(Gate::denies('product_category_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('country_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.country.create');
     }
@@ -60,7 +61,7 @@ class CountryController extends Controller
      */
     public function edit(Country $country)
     {
-        abort_if(Gate::denies('product_category_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('country_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.country.edit', compact('country'));
     }
@@ -79,7 +80,7 @@ class CountryController extends Controller
      */
     public function destroy(Country $country)
     {
-        abort_if(Gate::denies('product_category_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('country_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $country->delete();
 
