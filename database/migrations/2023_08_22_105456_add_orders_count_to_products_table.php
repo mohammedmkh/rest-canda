@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('country', function (Blueprint $table) {
-
-            $table->bigIncrements('id');
-            $table->String('name');
-            $table->timestamps();
+        Schema::table('products', function (Blueprint $table) {
+            $table->BigInteger('order_count')->after('price');
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('countries');
+        Schema::table('products', function (Blueprint $table) {
+           $table->dropColumn('order_count')->default(0);
+        });
     }
 };

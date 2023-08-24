@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\ADSController;
+
 Route::redirect('/', '/login');
 Route::get('/home', function () {
     if (session('status')) {
@@ -9,7 +13,7 @@ Route::get('/home', function () {
     return redirect()->route('admin.home');
 });
 
-Auth::routes(['register' => false]);
+Auth::routes(['register' => true]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
@@ -30,6 +34,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('product-categories/media', 'ProductCategoryController@storeMedia')->name('product-categories.storeMedia');
     Route::post('product-categories/ckmedia', 'ProductCategoryController@storeCKEditorImages')->name('product-categories.storeCKEditorImages');
     Route::resource('product-categories', 'ProductCategoryController');
+
+    //country&city
+    Route::resource('country', CountryController::class);
+    Route::resource('city'   , CityController::class);
+    Route::delete('country/destroy',[CountryController::class,'massDestroy'])->name('country.massDestroy');
+    Route::delete('city/destroy',[CountryController::class,'massDestroy'])->name('city.massDestroy');
 
     // Product Tag
     Route::delete('product-tags/destroy', 'ProductTagController@massDestroy')->name('product-tags.massDestroy');
@@ -86,6 +96,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Faqs
     Route::delete('faqs/destroy', 'FaqsController@massDestroy')->name('faqs.massDestroy');
     Route::resource('faqs', 'FaqsController');
+    Route::resource('ads', ADSController::class);
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password

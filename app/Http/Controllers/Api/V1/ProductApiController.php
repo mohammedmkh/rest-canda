@@ -32,8 +32,19 @@ class ProductApiController extends Controller
         }
     }
 
+    public function getproductbybestseller(){
+
+        $products=Product::orderby('order_count','desc')->paginate(10);
+        /* dd($products); */
+        if ($products) {
+        // dd($resturants->toArray());
+            return ResponseHelper::success(['products' => $products], 'products retrieved successfully.', 200,);
+        } else {
+            return ResponseHelper::error('products not found.', 404);
+        }
+    }
     //showing product by category
-    function getProductsByCategory($category_id) {
+    public function getProductsByCategory($category_id) {
         $category=ProductCategory::find($category_id);
         $products=$category->product;
 
@@ -65,10 +76,13 @@ class ProductApiController extends Controller
 
     public function store(StoreProductRequest $request)
     {
-        $product = Product::create($request->all());
+        $product = Product::create([$request->all(),
+
+        ]);
         $product->categories()->sync($request->input('categories', []));
         $product->tags()->sync($request->input('tags', []));
         $product->additionals()->sync($request->input('additionals', []));
+
         if ($request->input('photo', false)) {
             $product->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
         }

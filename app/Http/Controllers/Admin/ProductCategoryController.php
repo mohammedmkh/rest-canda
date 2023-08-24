@@ -59,7 +59,7 @@ class ProductCategoryController extends Controller
     {
         $productCategory->update($request->all());
 
-        if ($request->input('photo', false)) {
+        /* if ($request->input('photo', false)) {
             if (! $productCategory->photo || $request->input('photo') !== $productCategory->photo->file_name) {
                 if ($productCategory->photo) {
                     $productCategory->photo->delete();
@@ -68,7 +68,7 @@ class ProductCategoryController extends Controller
             }
         } elseif ($productCategory->photo) {
             $productCategory->photo->delete();
-        }
+        } */
 
         return redirect()->route('admin.product-categories.index');
     }

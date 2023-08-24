@@ -69,6 +69,48 @@ return [
         'title'          => 'Product Management',
         'title_singular' => 'Product Management',
     ],
+    'ADSManagement' => [
+        'title'          => 'ADS Management',
+        'title_singular' => 'ADS Management',
+    ],
+    'Country&CityManagement' => [
+        'title'             => 'Country&CityManage',
+        'title_singular'    => 'Country&CityManagement',
+    ],
+    'country' => [
+        'title'             => 'Country',
+        'title_singular'    => 'Country',
+        'fields'            =>[
+
+            'id'        => 'ID',
+            'id_helper' => ' ',
+            'name'      => 'country name',
+        ],
+
+    ],
+    'ads' => [
+        'title'             => 'ADS',
+        'title_singular'    => 'ADS',
+        'fields'            =>[
+
+            'id'        => 'ID',
+            'title' => 'ADS',
+            'id_helper' => ' ',
+            'url'      => 'URL',
+            'type'      => 'type',
+        ],
+
+    ],
+    'city' => [
+        'title'             => 'City',
+        'title_singular'    => 'City',
+        'fields' => [
+        'id' => 'ID',
+        'id_helper' => ' ',
+        'name' => 'city name',
+
+        ],
+    ],
     'productCategory' => [
         'title'          => 'Categories',
         'title_singular' => 'Category',

@@ -134,6 +134,49 @@
                         </ul>
                     </li>
                 @endcan
+                @can('countries&cities_access')
+                    <li
+                        class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/city*') ? 'menu-open' : '' }} ">
+                        <a class="nav-link nav-dropdown-toggle {{ request()->is('admin/country*') ? 'active' : '' }} {{ request()->is('admin/city*') ? 'active' : '' }}"
+                            href="#">
+                            <i class="fas fa-globe"></i>
+
+
+                            <p>
+                                {{ trans('cruds.Country&CityManagement.title') }}
+                                <i class="right fa fa-fw fa-angle-left nav-icon"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('country_access')
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.country.index') }}"
+                                        class="nav-link {{ request()->is('admin/country') || request()->is('admin/country/*') ? 'active' : '' }}">
+
+                                        <i class="fas fa-globe-asia"></i>
+
+
+                                        <p>
+                                            {{ trans('cruds.country.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+
+                            @can('city_access')
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.city.index') }}"
+                                        class="nav-link {{ request()->is('admin/city') || request()->is('admin/city/*') ? 'active' : '' }}">
+                                        <i class="fas fa-city"></i>
+                                        <p>
+                                            {{ trans('cruds.city.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
                 @can('resturant_access')
                     <li class="nav-item">
                         <a href="{{ route('admin.resturants.index') }}"
@@ -188,6 +231,50 @@
                                 {{ trans('cruds.setting.title') }}
                             </p>
                         </a>
+                    </li>
+                @endcan
+
+                @can('ads_access')
+                    <li
+                        class="nav-item has-treeview {{ request()->is('admin/ads*') ? 'menu-open' : '' }}  ">
+                        <a class="nav-link nav-dropdown-toggle {{ request()->is('admin/ads*') ? 'active' : '' }} "
+                            href="#">
+                            <i class="fas fa-home"></i>
+
+
+                            <p>
+                                {{ trans('cruds.ADSManagement.title') }}
+                                <i class="right fa fa-fw fa-angle-left nav-icon"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('ads_access')
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.ads.index') }}"
+                                        class="nav-link {{ request()->is('admin/ads') || request()->is('admin/ads/*') ? 'active' : '' }}">
+
+                                        {{-- <i class="fas fa-globe-asia"></i> --}}
+
+
+                                        <p>
+                                            {{ trans('cruds.ads.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+
+                           {{--  @can('city_access')
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.city.index') }}"
+                                        class="nav-link {{ request()->is('admin/city') || request()->is('admin/city/*') ? 'active' : '' }}">
+                                        <i class="fas fa-city"></i>
+                                        <p>
+                                            {{ trans('cruds.city.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan --}}
+                        </ul>
                     </li>
                 @endcan
                 @can('language_access')
