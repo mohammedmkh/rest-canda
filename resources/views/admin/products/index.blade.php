@@ -21,6 +21,7 @@
                         <th width="10">
 
                         </th>
+
                         <th>
                             {{ trans('cruds.product.fields.id') }}
                         </th>
@@ -114,6 +115,8 @@
                         data: 'placeholder',
                         name: 'placeholder'
                     },
+
+                   
                     {
                         data: 'id',
                         name: 'id'

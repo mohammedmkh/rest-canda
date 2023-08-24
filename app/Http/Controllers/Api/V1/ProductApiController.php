@@ -58,12 +58,27 @@ class ProductApiController extends Controller
     }
 
    public function productshow($id) {
+
         $products = Product::find($id);
         if ($products) {
             return ResponseHelper::success(['products' => $products], 'products retrieved successfully.', 200);
         } else {
             return ResponseHelper::error('products not found.', 404);
         }
+    }
+    //search product=>
+    public function product_search($search) {
+
+        $result = Product::where('name', 'LIKE', '%'. $search. '%')->get();
+        if(count($result)){
+            /* return Response()->json($result); */
+            return ResponseHelper::success(['result' => $result], 'results retrieved successfully.', 200);
+        }
+         else
+            {
+                return ResponseHelper::error('results not found.', 404);
+            }
+
     }
 
 

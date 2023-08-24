@@ -23,6 +23,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1'], functi
      Route::get('`showproductsbycategory`/{category_id}','ProductApiController@getProductsByCategory');
      Route::get('product/{id}', 'ProductApiController@productshow');
      Route::get('getproductbybestseller','ProductApiController@getproductbybestseller');
+     Route::post('product_search/{search}','ProductApiController@product_search');
      Route::get('homebage','HomePageController@index')->name('homebage');
 
 });
@@ -44,7 +45,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1', 'middle
    // Route::apiResource('additionals', 'AdditionalsApiController');
 
     // Favorite
-  //  Route::apiResource('favorites', 'FavoriteApiController');
+   Route::apiResource('favorites', 'FavoriteApiController');
 
     // Notification
   //  Route::apiResource('notifications', 'NotificationApiController');
