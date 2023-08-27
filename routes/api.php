@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\UserfavController;
 use App\Http\Controllers\Api\V1\HomePageController;
 use App\Http\Controllers\Api\V1\ProductApiController;
 use App\Http\Controllers\Api\V1\CountryCityApiController;
@@ -45,7 +46,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1', 'middle
    // Route::apiResource('additionals', 'AdditionalsApiController');
 
     // Favorite
-   Route::apiResource('favorites', 'FavoriteApiController');
+   Route::apiResource('myfavorites', 'UserfavController');
 
     // Notification
   //  Route::apiResource('notifications', 'NotificationApiController');
