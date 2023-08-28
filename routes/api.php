@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\V1\UserfavController;
-use App\Http\Controllers\Api\V1\HomePageController;
+use App\Http\Controllers\Api\V1\UserfavApiController;
 use App\Http\Controllers\Api\V1\ProductApiController;
+use App\Http\Controllers\Api\V1\HomePageApiController;
 use App\Http\Controllers\Api\V1\CountryCityApiController;
 use App\Http\Controllers\api\V1\ForgotPasswordApiController;
 
@@ -20,12 +20,12 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1'], functi
     Route::post('password/email', 'ForgotPasswordApiController  @forgot');
     Route::post('password/reset', 'ForgotPasswordApiController  @reset');
      // Product
-     Route::get('showproductsbyresturant/{resturant}','ProductApiController@getProductsByResturant');
-     Route::get('`showproductsbycategory`/{category_id}','ProductApiController@getProductsByCategory');
+     Route::get('showproductsbyresturant/{restura1nt}','ProductApiController@getProductsByResturant');
+     Route::get('showproductsbycategory/{category_id}','ProductApiController@getProductsByCategory');
      Route::get('product/{id}', 'ProductApiController@productshow');
      Route::get('getproductbybestseller','ProductApiController@getproductbybestseller');
      Route::post('product_search/{search}','ProductApiController@product_search');
-     Route::get('homebage','HomePageController@index')->name('homebage');
+     Route::get('homebage','HomePageApiController@index')->name('homebage');
 
 });
 
@@ -46,7 +46,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1', 'middle
    // Route::apiResource('additionals', 'AdditionalsApiController');
 
     // Favorite
-   Route::apiResource('myfavorites', 'UserfavController');
+   Route::apiResource('myfavorites', 'UserfavApiController');
 
     // Notification
   //  Route::apiResource('notifications', 'NotificationApiController');

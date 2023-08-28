@@ -60,6 +60,9 @@ class ProductApiController extends Controller
    public function productshow($id) {
 
         $products = Product::find($id);
+        /* $category=$products->categories()->get('id');
+        $cat_id=$category->id; */
+        dd($category);
         if ($products) {
             return ResponseHelper::success(['products' => $products], 'products retrieved successfully.', 200);
         } else {
