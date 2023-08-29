@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\V1\UserfavApiController;
 use App\Http\Controllers\Api\V1\ProductApiController;
+use App\Http\Controllers\Api\V1\UserfavApiController;
 use App\Http\Controllers\Api\V1\HomePageApiController;
+use App\Http\Controllers\Api\V1\UserOrdersApiController;
 use App\Http\Controllers\Api\V1\CountryCityApiController;
 use App\Http\Controllers\api\V1\ForgotPasswordApiController;
 
@@ -52,7 +53,9 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1', 'middle
   //  Route::apiResource('notifications', 'NotificationApiController');
 
     // Orders
-   // Route::apiResource('orders', 'OrdersApiController');
+   Route::apiResource('orders', 'OrdersApiController');
+   Route::get('orders/{id}', 'OrdersApiController@orderdetails');
+   Route::apiResource('myorders', 'UserOrdersApiController');
 
     // Addresses
     //Route::apiResource('addresses', 'AddressesApiController');

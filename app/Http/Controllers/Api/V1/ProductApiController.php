@@ -58,13 +58,22 @@ class ProductApiController extends Controller
     }
 
    public function productshow($id) {
+        //get product by id
+        $products = Product::findOrFail($id);
 
-        $products = Product::find($id);
-        /* $category=$products->categories()->get('id');
-        $cat_id=$category->id; */
-        dd($category);
         if ($products) {
-            return ResponseHelper::success(['products' => $products], 'products retrieved successfully.', 200);
+            //get related product based on same category :)
+            $categoryIds = $products->categories->pluck('id');
+            $relatedProducts = Product::whereHas('categories', function ($query) use ($categoryIds) {
+            $query->whereIn('product_categories.id', $categoryIds);
+            })
+            ->where('id', '<>', $products->id)
+            ->take(5)
+            ->get();
+
+            return ResponseHelper::success(['products' => $products,'relatedProducts'=>$relatedProducts], 'products
+            retrieved
+            successfully.', 200);
         } else {
             return ResponseHelper::error('products not found.', 404);
         }
