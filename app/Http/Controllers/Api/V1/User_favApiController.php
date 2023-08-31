@@ -8,7 +8,7 @@ use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddMyFavoriteRequest;
 
-class UserfavApiController extends Controller
+class User_favApiController extends Controller
 {
     /**
      * Display a listing of the resource.
