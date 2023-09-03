@@ -58,7 +58,7 @@ class Resturant extends Model implements HasMedia
     }
     public function usercart()
     {
-        return $this->hasMany(UserCart::class, 'resturant_id', 'id');
+        return $this->hasMany(UserCart::class);
     }
 
     public function getImageAttribute()
