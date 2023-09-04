@@ -75,7 +75,7 @@ class UserApiController extends Controller
     public function Verify(Request $request) {
         $validator = \Validator::make($request->all(), [
 
-        'code' => 'required|string|min:4',
+            'code' => 'required|string|min:4',
 
         ]);
 
@@ -105,19 +105,25 @@ class UserApiController extends Controller
 
     public function login(Request $request)
     {
+        /* $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]); */
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $token = $user->createToken('api-token')->plainTextToken;
 
-            return response()->json([
+            /* return response()->json([
                 'status' => true,
                 'user' => $user,
                 'token' => $token,
-            ]);
+            ]); */
+            return ResponseHelper::success(['user' => $user, 'token' => $token], 'Login successfully.');
         }
-            return ResponseHelper::success(['user' => $user , 'token' => $token], 'Login successfully.');
+            return ResponseHelper::error('credentials error', 422, );
+
 
        // return response()->json(['message' => 'Unauthorized'], 401);
     }
@@ -145,7 +151,7 @@ class UserApiController extends Controller
             return ResponseHelper::error('User not found.', 404);
         }
     }
-    public function test(){
+    /* public function test(){
 
-    }
+    } */
 }

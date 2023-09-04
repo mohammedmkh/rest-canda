@@ -16,9 +16,9 @@ class UserCart extends Model
     protected $fillable = [
         'amount',
         'total_price',
-        'user_id ',
-        'product_id ',
-        'resturant_id ',
+        'user_id',
+        'product_id',
+        'resturant_id',
         'created_at',
         'updated_at',
 

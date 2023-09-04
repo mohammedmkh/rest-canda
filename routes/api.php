@@ -57,6 +57,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1', 'middle
    Route::apiResource('orders', 'OrdersApiController');
    Route::get('orders/{id}', 'OrdersApiController@orderdetails');
    Route::apiResource('myorders', 'UserOrdersApiController');
+
+   
    Route::apiResource('usercart', 'UserCartApiController');
 
     // Addresses
