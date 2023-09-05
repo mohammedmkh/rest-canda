@@ -49,8 +49,9 @@ class UserCartApiController extends Controller
 
 
        //check if is the cart Exist or not
-       if(UserCart::where('product_id',$product_id)->where('user_id',$user_id)->exists()){
-            $user_cart= UserCart::where('product_id',$product_id)->where('user_id',$user_id);
+       $user_cart= UserCart::where('product_id',$product_id)->where('user_id',$user_id);
+       if($user_cart->exists()){
+
             $product_price=Product::find($product_id)->price;
             $amount=$request->amount;
             $total_price=$amount*$product_price;
@@ -61,6 +62,7 @@ class UserCartApiController extends Controller
             $data= UserCart::where('product_id',$product_id)->where('user_id',$user_id)->get();
             return ResponseHelper::success( $data, 'user cart updated successfully.', 200,);
        }else{
+
             $amount=$request->input('amount');
             $product_price=Product::find($product_id)->price;
             $resturant_id=Product::find($product_id)->resturant->id;
@@ -73,6 +75,7 @@ class UserCartApiController extends Controller
                 'product_id'    =>  $product_id,
                 'resturant_id'  =>  $resturant_id,
             ]);
+            
             if($user_cart){
                 return ResponseHelper::success( $user_cart, 'user cart added successfully.', 200,);
             }else{

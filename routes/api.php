@@ -56,10 +56,13 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1', 'middle
     // Orders
    Route::apiResource('orders', 'OrdersApiController');
    Route::get('orders/{id}', 'OrdersApiController@orderdetails');
-   Route::apiResource('myorders', 'UserOrdersApiController');
+   Route::get('myorders', 'UserOrdersApiController@index');
+   Route::get('myorders/{id}', 'UserOrdersApiController@orderdetails');
+   Route::post('myorders', 'UserOrdersApiController@store');
+   Route::delete('myorders/{id}', 'UserOrdersApiController@destroy');
 
-   
-   Route::apiResource('usercart', 'UserCartApiController');
+
+   Route::apiResource('usercart', UserCartApiController::class);
 
     // Addresses
     //Route::apiResource('addresses', 'AddressesApiController');

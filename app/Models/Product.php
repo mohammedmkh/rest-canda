@@ -4,6 +4,7 @@ namespace App\Models;
 
 use DateTimeInterface;
 use App\Models\UserCart;
+use App\Models\OrderProduct;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -90,5 +91,9 @@ class Product extends Model implements HasMedia
     public function usercart()
     {
         return $this->hasMany(UserCart::class);
+    }
+
+    function orderproduct() {
+        return $this->hasMany(OrderProduct::class);
     }
 }
