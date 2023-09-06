@@ -40,14 +40,12 @@ class UserOrdersApiController extends Controller
             $resturant=$orders->product->resturant;
 
             /* dd($resturant); */
-            return ResponseHelper::success([
-                'order'     =>  $orders,
-            ],200);
+            return ResponseHelper::success($orders,'data retrieved successfully', 200);
 
 
         } else {
 
-            return ResponseHelper::error(' not found.', 404);
+            return ResponseHelper::error('not found.', 404);
 
         }
     }
@@ -59,12 +57,12 @@ class UserOrdersApiController extends Controller
     {
         $user_id=auth()->user()->id;
         $validator = \Validator::make($request->all(), [
-        'delivery_price' => 'required',
-        'receipt_type'=>'required',
-        'tax'=>'required',
-        'payment_method_id'=>'required',
-        'quantity'=>'required',
-        'product_id'=>'required',
+            'delivery_price' => 'required',
+            'receipt_type'=>'required',
+            'tax'=>'required',
+            'payment_method_id'=>'required',
+            'quantity'=>'required',
+            'product_id'=>'required',
 
         ]);
 
@@ -131,7 +129,22 @@ class UserOrdersApiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+            $validator = \Validator::make($request->all(), [
+                'order_status' => 'required',
+
+            ]);
+            if ($validator->fails()) {
+                return ResponseHelper::error('Validation failed.', 422, $validator->errors());
+            }
+            $orders=Order::find($id);
+            $order=$orders->update([
+                'order_status'=>$request->input('order_status'),
+            ]);
+             return ResponseHelper::success([
+                'data'=>$order,
+                'message' => ' order status updated successfully'
+            ],200);
+
     }
 
     /**
@@ -139,7 +152,6 @@ class UserOrdersApiController extends Controller
      */
     public function destroy(string $id)
     {
-        
         $order=Order::find($id);
         $order->delete();
         $order->orderOrderProducts()->delete();

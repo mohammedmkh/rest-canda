@@ -54,14 +54,13 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1', 'middle
   //  Route::apiResource('notifications', 'NotificationApiController');
 
     // Orders
-   Route::apiResource('orders', 'OrdersApiController');
-   Route::get('orders/{id}', 'OrdersApiController@orderdetails');
-   Route::get('myorders', 'UserOrdersApiController@index');
-   Route::get('myorders/{id}', 'UserOrdersApiController@orderdetails');
-   Route::post('myorders', 'UserOrdersApiController@store');
-   Route::delete('myorders/{id}', 'UserOrdersApiController@destroy');
-
-
+   /* Route::apiResource('orders', 'OrdersApiController');
+   Route::get('orders/{id}', 'OrdersApiController@orderdetails'); */
+   Route::get('UserOrders', 'UserOrdersApiController@index');
+   Route::get('OrderDetails/{id}', 'UserOrdersApiController@orderdetails');
+   Route::post('AddOrders', 'UserOrdersApiController@store');
+   Route::post('UpdateOrderStatus/{id}', 'UserOrdersApiController@store');
+   Route::delete('DeleteMyorders/{id}', 'UserOrdersApiController@destroy');
    Route::apiResource('usercart', UserCartApiController::class);
 
     // Addresses
