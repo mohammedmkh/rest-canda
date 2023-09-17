@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ADS extends Model
 {
-    use HasFactory;
+    use SoftDeletes, HasFactory;
 
     protected $fillable = [
     'title',

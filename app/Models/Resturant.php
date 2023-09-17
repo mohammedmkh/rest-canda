@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use DateTimeInterface;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\UserCart;
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Resturant extends Model implements HasMedia
@@ -54,6 +55,10 @@ class Resturant extends Model implements HasMedia
     public function resturantOrders()
     {
         return $this->hasMany(Order::class, 'resturant_id', 'id');
+    }
+    public function usercart()
+    {
+        return $this->hasMany(UserCart::class);
     }
 
     public function getImageAttribute()

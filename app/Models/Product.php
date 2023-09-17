@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use DateTimeInterface;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\UserCart;
+use App\Models\OrderProduct;
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Product extends Model implements HasMedia
@@ -35,7 +37,7 @@ class Product extends Model implements HasMedia
         'created_at',
         'updated_at',
         'deleted_at',
-        ' order_count'
+        'order_count'
     ];
 
     protected function serializeDate(DateTimeInterface $date)
@@ -84,5 +86,14 @@ class Product extends Model implements HasMedia
     public function additionals()
     {
         return $this->belongsToMany(Additional::class);
+    }
+
+    public function usercart()
+    {
+        return $this->hasMany(UserCart::class);
+    }
+
+    function orderproduct() {
+        return $this->hasMany(OrderProduct::class);
     }
 }

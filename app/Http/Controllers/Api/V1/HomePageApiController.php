@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 
-class HomePageController extends Controller
+class HomePageApiController extends Controller
 {
     /**
      * Display a listing of the resource.

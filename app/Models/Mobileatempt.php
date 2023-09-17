@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mobileatempt extends Model
 {
-    use HasFactory;
-    
+    use SoftDeletes, HasFactory;
+
     protected $fillable = [
     'mobile',
     'code',
